@@ -4,6 +4,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { useDarkMode } from "@/hooks/useDarkMode";
+import { useVoiceCommands } from "@/hooks/useVoiceCommands";
+import { TrackConditions } from "@/components/TrackConditions";
 import dashboardBg from "@/assets/dashboard-bg.jpg";
 import { 
   Gauge, 
@@ -13,12 +16,19 @@ import {
   LogOut,
   Zap,
   BarChart3,
-  Radio
+  Radio,
+  Moon,
+  Sun,
+  Mic,
+  MicOff,
+  Sparkles
 } from "lucide-react";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { isDark, toggleDarkMode } = useDarkMode();
+  const { isListening, toggleListening } = useVoiceCommands();
   const [user, setUser] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -91,6 +101,17 @@ const Dashboard = () => {
           </div>
           
           <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleListening}
+              className={isListening ? "bg-primary/20 text-primary" : ""}
+            >
+              {isListening ? <Mic className="h-4 w-4" /> : <MicOff className="h-4 w-4" />}
+            </Button>
+            <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
+              {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </Button>
             <div className="text-right hidden sm:block">
               <p className="text-sm font-medium">{profile?.full_name || user?.email}</p>
               <p className="text-xs text-muted-foreground flex items-center gap-1 justify-end">
@@ -139,6 +160,34 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+          {/* Track Conditions - Full width on small screens, 1 col on large */}
+          <div className="lg:col-span-1">
+            <TrackConditions />
+          </div>
+
+          {/* Media Lab Card */}
+          <Card 
+            className="lg:col-span-2 bg-gradient-to-br from-accent/20 via-primary/20 to-secondary/20 border-accent/30 hover:border-accent/50 transition-all cursor-pointer hover:shadow-lg hover:shadow-accent/20"
+            onClick={() => navigate('/media-lab')}
+          >
+            <CardHeader>
+              <div className="flex items-center gap-2 mb-2">
+                <Sparkles className="h-5 w-5 text-accent" />
+                <CardTitle>Media Lab</CardTitle>
+              </div>
+              <CardDescription>
+                AI-powered image and video generation powered by Lovable AI. Create stunning racing visuals instantly.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button variant="racing" className="w-full">
+                Open Media Lab
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Driver Training & Insights */}
           <Card className="bg-card/50 backdrop-blur border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/20">
