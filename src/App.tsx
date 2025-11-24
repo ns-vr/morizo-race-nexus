@@ -7,6 +7,11 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import MediaLab from "./pages/MediaLab";
+import DriverTraining from "./pages/DriverTraining";
+import RacePredictions from "./pages/RacePredictions";
+import PostRaceAnalysis from "./pages/PostRaceAnalysis";
+import LiveTelemetry from "./pages/LiveTelemetry";
+import FanZone from "./pages/FanZone";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +27,11 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/media-lab" element={<MediaLab />} />
+          <Route path="/driver-training" element={<DriverTraining />} />
+          <Route path="/race-predictions" element={<RacePredictions />} />
+          <Route path="/post-race-analysis" element={<PostRaceAnalysis />} />
+          <Route path="/live-telemetry" element={<LiveTelemetry />} />
+          <Route path="/fan-zone" element={<FanZone />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

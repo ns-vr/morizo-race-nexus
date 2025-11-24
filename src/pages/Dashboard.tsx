@@ -201,7 +201,7 @@ const Dashboard = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full" variant="outline">
+              <Button className="w-full" variant="outline" onClick={() => navigate('/driver-training')}>
                 View Insights
               </Button>
             </CardContent>
@@ -219,7 +219,7 @@ const Dashboard = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full" variant="outline">
+              <Button className="w-full" variant="outline" onClick={() => navigate('/race-predictions')}>
                 View Predictions
               </Button>
             </CardContent>
@@ -237,7 +237,7 @@ const Dashboard = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full" variant="outline">
+              <Button className="w-full" variant="outline" onClick={() => navigate('/post-race-analysis')}>
                 Analyze Races
               </Button>
             </CardContent>
@@ -255,7 +255,7 @@ const Dashboard = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full" variant="outline">
+              <Button className="w-full" variant="outline" onClick={() => navigate('/live-telemetry')}>
                 Go Live
               </Button>
             </CardContent>
@@ -274,7 +274,7 @@ const Dashboard = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Button className="w-full" variant="outline">
+                <Button className="w-full" variant="outline" onClick={() => navigate('/fan-zone')}>
                   Explore
                 </Button>
               </CardContent>
